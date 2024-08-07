@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { envNodeEnv } from "../environment";
+
+import { isProduction } from "../constants";
 
 export const errorLogger = async (
   err: any,
@@ -7,8 +8,6 @@ export const errorLogger = async (
   res: Response,
   next: NextFunction
 ) => {
-  const isProduction = envNodeEnv === "production";
-
   const errorDetails = {
     message: err.message,
     stack: err.stack,

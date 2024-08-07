@@ -4,11 +4,12 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import expSession from "express-session";
-import expAsync from "express-async-handler";
 
-import { envPort, envSessionKey } from "./environment";
+import { envNodeEnv, envPort, envSessionKey } from "./environment";
 
 import { errorLogger } from "./middlewares/error.middleware";
+
+import { expAsync } from "./common";
 
 dotenv.config();
 
@@ -38,5 +39,5 @@ app.use(errorLogger);
 const port = envPort || 8080;
 
 app.listen(port, async () => {
-  console.log("Server running on PORT: " + port);
+  console.log(envNodeEnv.toUpperCase() + " Server running on PORT: " + port);
 });
